@@ -28,7 +28,9 @@ Make sure that you have preconnected ESP-module to wifi. Execute `moonr.bas` and
 
 Remark for ZX-Uno users: it requires enabled "new graphics modes"
 
-Remark for MB03+ users: I haven't real device. All development made in "blind" mode.
+---Remark for MB03+ users: I haven't real device. All development made in "blind" mode.---
+
+UPD: I've got it. It's really ultimate.
 
 ## Sponsorship
 
