@@ -9,7 +9,7 @@ all:
 
 	
 mb03: $(SOURCES)
-	sjasmplus main.asm -DPROXY -DMB03 -DTIMEX --lst=main.lst
+	sjasmplus main.asm -DPROXY -DMB03 -DTIMEX -DGS --lst=main.lst
 	
 zxuno: $(SOURCES)
 	sjasmplus main.asm -DUNO -DTIMEX --lst=main.lst

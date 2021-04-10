@@ -34,8 +34,14 @@ plainTextLoop:
     cp Console.BACKSPACE : jp z, History.back
 
     cp CR : jp z, navigate
-    cp ESC : jp z, exit
+ 
+    ifdef GS
+    cp 'M' : call z, GeneralSound.toggleModule
+    cp 'm' : call z, GeneralSound.toggleModule
+    endif
+
     jr plainTextLoop
+
 
 textDown:
     ld a, (page_offset) : add PER_PAGE : ld (page_offset), a

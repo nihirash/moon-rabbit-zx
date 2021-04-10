@@ -8,8 +8,10 @@ UART_TX_BUSY       equ %00000010
 UART_RX_DATA_READY equ %00000001
 UART_FIFO_FULL     equ %00000100
 
-
 init:
+    ld bc, #703B, a, 5 : out (c), a
+    inc b
+    ld a, 1 : out (c), a
     ret
 
 read:

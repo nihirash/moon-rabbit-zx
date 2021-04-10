@@ -43,11 +43,11 @@ inputNavigate:
     ld (de), a : inc hl, de
     jr .loop
 .complete
-    ld a, 9 : ld (de), a : inc de
+    ld a, TAB : ld (de), a : inc de
     ld a, '7' : ld (de), a : inc de
     ld a, '0' : ld (de), a : inc de
-    ld a, 13 : ld (de), a : inc de
-    ld a, 10 : ld (de), a : inc de
+    ld a, CR : ld (de), a : inc de
+    ld a, LF : ld (de), a : inc de
     ld hl, navRow : call History.navigate
 
 navRow db "1 ", TAB, "/", TAB
@@ -55,7 +55,7 @@ domain db "nihirash.net"
     ds 64 - ($ - domain)
 
     IFDEF MB03
-header db "    Moon Rabbit 1.0 for MB-03+ (c) 2021 Alexander Nihirash",13, 0
+header db "    Moon Rabbit 1.1 for MB03+  (c) 2021 Alexander Nihirash",13, 0
     ENDIF
     
     IFDEF UNO

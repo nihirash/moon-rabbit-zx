@@ -3,11 +3,12 @@
     ENDIF
 
     IFDEF MB03
-    include "uart.asm"
+    include "mb03-uart.asm"
     ENDIF
     
     include "utils.asm"
     include "wifi.asm"
     include "proxy.asm"
     include "memory.asm"
+    include "general-sound.asm"
     

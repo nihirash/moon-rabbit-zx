@@ -54,6 +54,33 @@ loadBuffer:
     call Wifi.continue
     jr .loop
 
+    ifdef GS
+loadMod:
+    xor a : call GeneralSound.init
+    ld hl, .progress : call DialogBox.msgNoWait
+    call makeRequest : jp c, Fetcher.fetchFromNet.error
+    call GeneralSound.loadModule
+.loop
+    ld hl, outputBuffer, (Wifi.buffer_pointer), hl
+    call Wifi.getPacket
+    ld a, (Wifi.closed) : and a : jr nz, .exit
+    ld hl, outputBuffer, bc, (Wifi.bytes_avail)
+.loadLoop
+    ld a, b : or c : and a : jr z, .nextFrame
+    ld a, (hl) : call GeneralSound.sendByte
+    dec bc
+    inc hl
+    jr .loadLoop
+.nextFrame
+    call Wifi.continue
+    jr .loop
+.exit
+    call GeneralSound.finishLoadingModule
+    jp History.back
+.progress db "MOD downloading directly to GS!", 0
+    endif
+
+
 download:
 
     ld de, historyBlock.locator
@@ -93,7 +120,7 @@ download:
     call Dos.fwrite
 
     call Wifi.continue
-    jp .loop
+    jr .loop
 .exit
     ld a, (.fp)
     call Dos.fclose

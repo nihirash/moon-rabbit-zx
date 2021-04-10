@@ -70,6 +70,11 @@ navigate:
     inc a : ld (depth), a
 1
     ld a,(historyBlock.mediaType) : cp MIME_DOWNLOAD : jp z, Gopher.download
+    
+    ifdef GS
+    cp MIME_MOD : jp z, Gopher.loadMod
+    endif
+
     jp load
 
 homePage:

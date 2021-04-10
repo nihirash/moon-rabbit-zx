@@ -49,7 +49,12 @@ workLoop:
     cp 'D' : jp z, inputHost
 
     cp CR : jp z, navigate
-    cp ESC : jp z, exit
+
+    ifdef GS
+    cp 'M' : call z, GeneralSound.toggleModule
+    cp 'm' : call z, GeneralSound.toggleModule
+    endif
+    
     jp workLoop
 
 navigate:

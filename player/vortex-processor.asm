@@ -5,6 +5,10 @@ play:
     ld hl, message : call DialogBox.msgNoWait
 
     ld hl, outputBuffer  : call VTPL.INIT
+    
+    ifdef GS
+    call GeneralSound.stopModule
+    endif
 .loop
     halt : di : call VTPL.PLAY : ei
     xor a : in a, (#fe) : cpl : and 31 : jp nz, .stop

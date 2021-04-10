@@ -1,8 +1,14 @@
 
     module TextMode
 PORT_SELECT = #7c3b
-
 init:
+    ld hl, font_file, b, Dos.FMODE_READ
+    call Dos.fopen
+    push af
+    ld bc, 2048, hl, font
+    call Dos.fread
+    pop af
+    call Dos.fclose
 cls:
     ld a, 7 : call Memory.setPage
 
@@ -76,7 +82,6 @@ putC:
 	cp 13
 	jp z, .cr
 
-	sub 32
     ld b, a
     
     ld de, (coords)
@@ -125,7 +130,7 @@ putC:
 ; A - char
 fillLine:
     ld d, h, e, 0 : call gotoXY
-    ld b, 63
+    ld b, 64
 .loop
     push af, bc
     call putC
@@ -164,8 +169,8 @@ fa1:
     ret
 
 coords dw 0
-font equ #3D00 ; Using ZX-Spectrum font - 2K economy
-
+font equ #4000 ; Using ZX-Spectrum font - 2K economy
+font_file db "data/font.bin", 0
     endmodule
 
 exit:

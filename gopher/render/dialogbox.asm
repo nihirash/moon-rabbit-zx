@@ -49,9 +49,10 @@ msgNoWait:
     jp TextMode.printZ
 
 drawBox:
-    ld h, #0A, a, '*' : call TextMode.fillLine
-    ld h, #0B, a, ' ' : call TextMode.fillLine
-    ld h, #0C, a, '*' : call TextMode.fillLine
+    ld h, #0A, a, BORDER_TOP    : call TextMode.fillLine
+    ld h, #0B, a, ' '           : call TextMode.fillLine
+    ld h, #0C, a, BORDER_BOTTOM : call TextMode.fillLine
+    
     ld a, #0a : call TextMode.highlightLine
     ld a, #0c : call TextMode.highlightLine
     ld de, #0B05 : call TextMode.gotoXY
