@@ -11,7 +11,7 @@ For building version without GNU make you should execute:
 For MB03+:
 
 ```
-sjasmplus main.asm -DPROXY -DMB03 -DTIMEX
+sjasmplus main.asm -DPROXY -DMB03 -DGS -DTIMEX
 ```
 
 For ZXUno:
