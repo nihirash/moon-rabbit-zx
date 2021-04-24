@@ -6,18 +6,21 @@
 openTCP:
     push de
     push hl
+    
+    xor a : ld hl, hostBuff, de, hostBuff + 1, bc, 102, (hl), a : ldir
+
     EspCmdOkErr "AT+CIPCLOSE"
     EspCmdOkErr 'AT+CIPSTART="TCP","138.68.76.243",6912' // Replace here for yourown proxy. If you wish
     jr c, .error
     pop hl : ld de, hostBuff
 .copyHost
-    ld a, (hl) : cp 9 : jr z, 1F : and a : jr z, 1F
+    ld a, (hl) : and a : jr z, 1F : and a : jr z, 1F
     ld (de), a : inc hl, de
     jr .copyHost
 1   xor a : ld (de), a
     pop hl : ld de, portBuff
 .copyPort
-    ld a, (hl) : cp 9 : jr z, 1F : and a : jr z, 1F
+    ld a, (hl) : and a : jr z, 1F : and a : jr z, 1F
     ld (de), a : inc hl, de
     jr .copyPort
 1   ld hl, hostBuff : call tcpSendZ
@@ -37,6 +40,6 @@ continue:
     jp checkOkErr
 
 hostBuff ds 96
-portBuff ds 6
+portBuff ds 7
     ENDMODULE
     ENDIF

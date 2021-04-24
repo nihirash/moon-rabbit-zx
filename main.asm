@@ -1,7 +1,7 @@
     device	zxspectrum128
 
     org 24576
-tapBegin:
+asmOrg:
     jp start
     include "vdp/index.asm"
     include "utils/index.asm"
@@ -17,7 +17,7 @@ tapBegin:
     include "drivers/index.asm"
 start:
     di
-    ld sp, tapBegin
+    ld sp, asmOrg
     ei
     call TextMode.init
     ld hl, initing : call TextMode.printZ
@@ -31,4 +31,4 @@ initing db "Initing Wifi...",13,0
     display "ENDS: ", $
     display "Buff size", #ffff - $
 
-    savebin "moon.bin", tapBegin, $ - tapBegin
+    savebin "moon.bin", asmOrg, $ - asmOrg

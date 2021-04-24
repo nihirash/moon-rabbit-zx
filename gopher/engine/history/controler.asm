@@ -7,7 +7,7 @@ back:
 load:
     ld hl, .msg : call DialogBox.msgNoWait
     xor a : ld hl, outputBuffer, de, outputBuffer + 1
-    ld bc, #c000 - outputBuffer - 1
+    ld bc, #ffff - outputBuffer - 1
     ld (hl), a 
     ldir
     
@@ -28,6 +28,9 @@ navigate:
 
     push hl
     ld hl, HistoryEnd - HistoryRecord, de, HistoryEnd, bc,  HistoryRecord * total : lddr
+
+    ; Clean up struct
+    xor a : ld hl, historyBlock, de, historyBlock + 1, bc, historyBlockSize - 1, (hl), a : ldir
     pop hl
 
     ; Fill record
@@ -38,7 +41,7 @@ navigate:
     ld (de), a : inc de
     ld a, (hl) : push hl, de : call Render.getIcon : pop de, hl
     ld (de), a : inc de
-    ld a, 9, bc, #ff : cpir
+    ld a, 9, bc, #fff : cpir
 .locatorCopy
     ld a, (hl) : cp 9 : jr z, 1f
     ld (de), a : inc hl, de
