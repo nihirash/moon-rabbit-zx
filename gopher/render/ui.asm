@@ -55,7 +55,7 @@ domain db "nihirash.net"
     ds 64 - ($ - domain)
 
     IFDEF MB03
-header db "    Moon Rabbit 1.1 for MB03+  (c) 2021 Alexander Nihirash",13, 0
+header db "    Moon Rabbit 1.2 for MB03+  (c) 2021 Alexander Nihirash",13, 0
     ENDIF
     
     IFDEF UNO
