@@ -138,6 +138,6 @@ download:
 
 socket db 0
 
-requestbuffer ds #ff
+requestbuffer ds #1ff
     endmodule
     
