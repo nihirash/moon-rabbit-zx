@@ -29,6 +29,7 @@ navigate:
     push hl
     ld hl, HistoryEnd - HistoryRecord, de, HistoryEnd, bc,  HistoryRecord * total : lddr
 
+    ld de, (Render.position), (historyBlock.position + HistoryRecord), de
     ; Clean up struct
     xor a : ld hl, historyBlock, de, historyBlock + 1, bc, historyBlockSize - 1, (hl), a : ldir
     pop hl
@@ -66,7 +67,6 @@ navigate:
     jr .portCopy
 1   xor a : ld (de), a
     ld hl, DialogBox.inputBuffer, de, historyBlock.search, bc, #ff : ldir
-    ld de, (Render.position), (historyBlock.position + HistoryRecord), de
     ld de, 0, (historyBlock.position), de
     pop hl
     ld a, (depth) : cp total : jr nc, 1f

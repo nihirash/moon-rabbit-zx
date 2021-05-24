@@ -7,6 +7,7 @@ CURSOR_OFFSET = 3
     include "gopher-page.asm"
     include "plaintext.asm"
 
+play_next       db  0
 position        EQU historyBlock.position
 cursor_position EQU position + 1
 page_offset     EQU position
