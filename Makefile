@@ -5,6 +5,7 @@ all:
 	@echo "For making MB03 version call: 'make mb03'"
 	@echo "For making ZXUno(esxDOS) version call: 'make zxuno'"
 	@echo "For making ZXUno(esxDOS, usual screen) version call: 'make zxuno-zxscreen'"
+	@echo "For making Ay-Wifi(esxDOS) version call: make esxdos-ay"
 	@echo ""
 	@echo "Before changing version call: 'make clean' for removing builded images"
 
