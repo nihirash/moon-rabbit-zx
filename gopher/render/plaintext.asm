@@ -31,9 +31,8 @@ plainTextLoop:
 
     cp 'b' : jp z, History.back
     cp 'B' : jp z, History.back
+    
     cp Console.BACKSPACE : jp z, History.back
-
-    cp CR : jp z, navigate
  
     ifdef GS
     cp 'M' : call z, GeneralSound.toggleModule

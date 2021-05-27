@@ -23,7 +23,7 @@ checkBorder:
 workLoop:
     ld a, (play_next) : and a : jp nz, navigate
 
-    dup 3
+    dup 5
     halt
     edup
 .nothing

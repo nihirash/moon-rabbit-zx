@@ -1,4 +1,4 @@
-
+COLOR=0
     module TextMode
 PORT_SELECT = #7c3b
 init:
@@ -168,8 +168,12 @@ fa1:
     ex hl, de
     ret
 
+disable:
+    xor a : out (#fe), a : out (#ff), a
+    ret
+
 coords dw 0
-font equ #4000 ; Using ZX-Spectrum font - 2K economy
+font equ #4000 ; Using ZX-Spectrum screen as font buffer
 font_file db "data/font.bin", 0
     endmodule
 

@@ -5,6 +5,10 @@
     IFDEF MB03
     include "mb03-uart.asm"
     ENDIF
+
+    IFDEF AY
+    include "ay-uart.asm"
+    ENDIF
     
     include "utils.asm"
     include "wifi.asm"

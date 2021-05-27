@@ -18,11 +18,31 @@ play:
     ld a, 1, (Render.play_next), a
 .stop
     call VTPL.MUTE
+    
+    IFDEF AY
+    call restoreAyState
+    ENDIF
+
     call Console.waitForKeyUp
     ret
 .stopKey
     xor a : ld (Render.play_next), a
     jr .stop
+
+    IFDEF AY
+restoreAyState:
+    ld a, #07
+    ld bc, #fffd
+    out (c), a
+    ld a, #fc
+    ld b, #bf
+    out (c), a ; Enable read mode
+    
+    ld a, #0e
+    ld bc, #fffd
+    out (c), a
+    ret
+    ENDIF 
 
 message db "Press key to stop...", 0
     ENDMODULE

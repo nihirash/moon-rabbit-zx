@@ -25,9 +25,8 @@ init:
     ret
 
 read:
-.loop
     call uartRead
-    jr nc, .loop
+    jr nc, read
     ret
 
 ; Write single byte to UART
@@ -35,7 +34,6 @@ read:
 ; BC will be wasted
 write:    
     push af
-    ld a, 3 : out (#fe), a
     ld bc, ZXUNO_ADDR : ld a, UART_STAT_REG : out (c), a
     ld bc, ZXUNO_REG : in A, (c) : and UART_BYTE_RECIVED
     jr nz, .is_recvF
@@ -46,7 +44,6 @@ write:
     ld bc, ZXUNO_ADDR : ld a, UART_DATA_REG : out (c), a
 
     ld bc, ZXUNO_REG : pop af : out (c), a
-    xor a : out (#fe), a
     ret
 .is_recvF
     push af : push hl
