@@ -12,7 +12,7 @@ init:
 cls:
     ld de, 0 : call gotoXY
     ld a, 7 : call Memory.setPage
-    xor a
+    xor a : out (#fe), a
     ld hl, #c000, de, #c001, bc, 6911, (hl), a : ldir
     jp Memory.setPage
     

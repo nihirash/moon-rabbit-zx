@@ -59,6 +59,8 @@ workLoop:
     jp workLoop
 
 navigate:
+    xor a : ld (play_next), a
+    
     call hideCursor
     ld a, (page_offset), b, a, a, (cursor_position) : add b : ld b, a : call Render.findLine
     ld a, (hl)

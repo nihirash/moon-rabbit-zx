@@ -55,13 +55,19 @@ domain db "nihirash.net"
     ds 64 - ($ - domain)
 
     IFDEF MB03
-header db "    Moon Rabbit 1.3 for MB03+  (c) 2021 Alexander Nihirash",13, 0
+header db "    Moon Rabbit "
+       db VERSION_STRING
+       db " for MB03+  (c) 2021 Alexander Nihirash",13, 0
     ENDIF
     
     IFDEF UNO
-header db "    Moon Rabbit 1.0 for ZX-Uno (c) 2021 Alexander Nihirash",13, 0
+header db "    Moon Rabbit "
+       db VERSION_STRING
+       db " for ZX-Uno (c) 2021 Alexander Nihirash",13, 0
     ENDIF
 
     IFDEF AY
-header db "    Moon Rabbit 1.0 for AYWIFI (c) 2021 Alexander Nihirash",13, 0
+header db "    Moon Rabbit "
+       db VERSION_STRING
+       db " for AYWIFI (c) 2021 Alexander Nihirash",13, 0
     ENDIF

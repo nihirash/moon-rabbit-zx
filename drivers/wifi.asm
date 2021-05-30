@@ -4,7 +4,9 @@ buffer_pointer dw 0
 closed db 1
 ; Initialize Wifi chip to work
 init:
+    ld hl, .uartIniting : call TextMode.printZ
     call Uart.init
+    ld hl, .chipIniting : call TextMode.printZ
     EspCmdOkErr "ATE0"
     jr c, .initError
 
@@ -22,6 +24,8 @@ init:
     scf
     ret
 .errMsg db "WiFi chip init failed!",0
+.uartIniting db "Uart initing...",13,0
+.chipIniting db "Chip initing...",13,0
     IFNDEF PROXY   
 ; HL - host pointer in gopher row
 ; DE - port pointer in gopher row

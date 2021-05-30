@@ -21,7 +21,7 @@ processPage:
     jp   Render.workLoop
 .playNext
     ld hl, Render.cursor_position
-    dec (hl)
+    inc (hl)
     jp Render.checkBorder
 
 

@@ -1,6 +1,7 @@
     module Uart
-    DISPLAY "AY-UART: ", $
+    assert $ > #8000 ;; Important keep it in FAST memory
 init:
+    di
     ld a, #07
     ld bc, #fffd
     out (c), a
@@ -26,8 +27,8 @@ init:
 
 
 write:
+    push hl, de, bc
     push af
-    
     ld c, #fd ; prepare port addresses
     ld d, #ff
     ld e, #bf
@@ -81,11 +82,15 @@ transmitNext:
     or a
     rra 
     djnz transmitBit
+    exx
     ei
+    pop bc, de, hl
     ret
 
 read:
+    push bc, de, hl
     call uartRead
+    pop hl, de, bc
     ret c
     jr read
 
