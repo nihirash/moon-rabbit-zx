@@ -17,6 +17,9 @@ init:
     
     EspCmdOkErr "AT+CIPDINFO=0" ; Disable additional info
     jr c, .initError
+
+    ld hl, .doneInit : call TextMode.printZ
+    
     or a
     ret
 .initError
@@ -26,6 +29,7 @@ init:
 .errMsg db "WiFi chip init failed!",0
 .uartIniting db "Uart initing...",13,0
 .chipIniting db "Chip initing...",13,0
+.doneInit    db "Done!",0
     IFNDEF PROXY   
 ; HL - host pointer in gopher row
 ; DE - port pointer in gopher row

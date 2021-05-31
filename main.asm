@@ -24,18 +24,34 @@ asmOrg:
     include "screen/screen.asm"
     include "drivers/index.asm"
 start:
+outputBuffer:
     di
     ld sp, asmOrg
+    call Memory.init
     ei
+    
+    ld a, 7 : call Memory.setPage
+    ;; Logo
+    ld hl, logo, b, Dos.FMODE_READ : call Dos.fopen
+    push af
+    ld hl, #c000, bc, 6912 : call Dos.fread
+    pop af
+    call Dos.fclose
+
+    ld b, 150 
+1   halt 
+    djnz 1b
+    ;; End of logo :-)
+    
     call TextMode.init
+
     ld hl, initing : call TextMode.printZ
     call Wifi.init
-    call History.home
-    jr $
 
-outputBuffer:
+    jp History.home
+
 initing db "Initing Wifi...",13,0
-
+logo    db  "data/logo.scr", 0
     display "ENDS: ", $
     display "Buff size", #ffff - $
 

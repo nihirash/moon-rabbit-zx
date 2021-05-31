@@ -9,6 +9,8 @@ init:
     call Dos.fread
     pop af
     call Dos.fclose
+	xor a : out (#fe), a
+	ret
 cls:
     ld de, 0 : call gotoXY
     ld a, 7 : call Memory.setPage
