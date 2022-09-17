@@ -28,6 +28,7 @@ outputBuffer:
     di
     ld sp, asmOrg
     call Memory.init
+    xor a : out (#fe),a
     ei
     
     ld a, 7 : call Memory.setPage
@@ -46,7 +47,9 @@ outputBuffer:
     call TextMode.init
 
     ld hl, initing : call TextMode.printZ
+    IFNDEF EMU
     call Wifi.init
+    ENDIF
 
     jp History.home
 
@@ -55,4 +58,5 @@ logo    db  "data/logo.scr", 0
     display "ENDS: ", $
     display "Buff size", #ffff - $
 
-    savebin "moon.bin", asmOrg, $ - asmOrg
+    save3dos "moon.bin", asmOrg, $ - asmOrg
+    ;savebin "moon.bin", asmOrg, $ - asmOrg

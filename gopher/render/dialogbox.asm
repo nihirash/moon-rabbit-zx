@@ -53,8 +53,11 @@ drawBox:
     ld h, #0B, a, ' '           : call TextMode.fillLine
     ld h, #0C, a, BORDER_BOTTOM : call TextMode.fillLine
     
+    IFNDEF TIMEX80
     ld a, #0a : call TextMode.highlightLine
     ld a, #0c : call TextMode.highlightLine
+    ENDIF
+
     ld de, #0B05 : call TextMode.gotoXY
     ret
     endmodule

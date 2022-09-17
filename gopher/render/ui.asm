@@ -38,6 +38,9 @@ inputHost:
 
 inputNavigate:
     ld hl, hostName, de, domain
+    ld a,(hl)
+    and a
+    jp History.load
 .loop
     ld a, (hl) : and a : jr z, .complete
     ld (de), a : inc hl, de
@@ -48,7 +51,7 @@ inputNavigate:
     ld a, '0' : ld (de), a : inc de
     ld a, CR : ld (de), a : inc de
     ld a, LF : ld (de), a : inc de
-    ld hl, navRow : call History.navigate
+    ld hl, navRow : jp History.navigate
 
 navRow db "1 ", TAB, "/", TAB
 domain db "nihirash.net" 

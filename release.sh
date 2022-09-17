@@ -2,7 +2,7 @@
 VERSION=$(expr "$(cat version.def)" + 1)
 echo $VERSION >version.def
 
-TARGETS=("mb03" "zxuno" "zxuno-zxscreen" "esxdos-ay")
+TARGETS=("mb03" "mb03-80" "zxuno" "zxuno-80" "zxuno-zxscreen" "esxdos-ay")
 rm -rf release
 mkdir release
 

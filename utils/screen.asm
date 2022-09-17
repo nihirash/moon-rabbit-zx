@@ -1,6 +1,9 @@
+    IFNDEF LINE_LIMIT
+LINE_LIMIT = 60
+    ENDIF
 ; HL - string pointer
 print70Text:
-    ld b, 60
+    ld b, LINE_LIMIT
 .loop
     ld a, (hl)
     and a : ret z
@@ -18,7 +21,7 @@ print70Text:
 
 ; HL - string pointer
 print70Goph:
-    ld b, 60
+    ld b, LINE_LIMIT
 .loop
     ld a, (hl) : cp 09 : ret z
     and a : ret z
