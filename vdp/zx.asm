@@ -22,6 +22,7 @@ cls:
 ; Set console coordinates
 ; d = row(0..23), e = column (0..63)
 gotoXY:
+	rr e
 	ld a, 0
 	ld (half_tile_screen), a
     ld (col_screen), de

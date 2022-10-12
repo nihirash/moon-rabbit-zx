@@ -22,6 +22,9 @@ mb03-80: $(SOURCES)
 
 
 zxuno: $(SOURCES)
+	sjasmplus main.asm -DUNO -DTIMEX --lst=main.lst -DV=$(VERSION)
+
+zxuno-80: $(SOURCES)
 	sjasmplus main.asm -DUNO -DTIMEX80 --lst=main.lst -DV=$(VERSION)
 
 zxuno-zxscreen: $(SOURCES)
@@ -36,6 +39,8 @@ emu-timex: $(SOURCES)
 emu-timex-80: $(SOURCES)
 	sjasmplus main.asm -DEMU -DUNO -DTIMEX80 --lst=main.lst -DV=$(VERSION)
 
+emu-zx: $(SOURCES)
+	sjasmplus main.asm -DEMU -DUNO -DZXSCR --lst=main.lst -DV=$(VERSION)
 
 clean:
 	rm $(BINARY) $(LST)

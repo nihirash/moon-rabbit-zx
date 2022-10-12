@@ -6,17 +6,19 @@ KEY_RT = 9
 BACKSPACE = 12
 keyCode db 0 
 
-BASIC_KEY = 23560
+BASIC_KEY = #5C08
 
 waitForKeyUp:
-    xor a : in a, (#fe) : cpl : and 31 : jr nz, waitForKeyUp
-    ret
+   xor a : in a, (#fe) : cpl : and 31 : jr nz, waitForKeyUp
+   ld (BASIC_KEY), a
+   ret
 
 getC:
-   ld a, (BASIC_KEY)
-   push af
-   xor a : ld (BASIC_KEY),a
-   pop af
+   ld a,(BASIC_KEY)
+   and a : jr z, getC
+   ld b,a
+   xor a : ld (BASIC_KEY), a
+   ld a, b
    ret
 
 peekC:
@@ -189,5 +191,4 @@ inkey:
    db 13,12,11,10,8            ; ENTER, L, K, J, H
    db ' ',0,13,14,2          ; SPACE, SYM SHIFT, M, N, B
 
-timeleft db 0
     endmodule

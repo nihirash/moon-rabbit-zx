@@ -26,6 +26,8 @@ asmOrg:
 start:
 outputBuffer:
     di
+    xor a : ld (#5c6a), a  ; Thank you, Mario Prato, for feedback
+    ld (#5c00),a
     ld sp, asmOrg
     call Memory.init
     xor a : out (#fe),a
@@ -59,4 +61,4 @@ logo    db  "data/logo.scr", 0
     display "Buff size", #ffff - $
 
     save3dos "moon.bin", asmOrg, $ - asmOrg
-    ;savebin "moon.bin", asmOrg, $ - asmOrg
+   ; savebin "moon.bin", asmOrg, $ - asmOrg

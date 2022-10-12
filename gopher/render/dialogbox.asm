@@ -13,7 +13,6 @@ inputBox:
     cp Console.BACKSPACE : jr z, .removeChar
     cp CR : ret z
     cp SPACE : jr c, .checkkey
-    jr .putC
 .putC
     ld e, a
     xor a : ld hl, inputBuffer, bc, #ff : cpir

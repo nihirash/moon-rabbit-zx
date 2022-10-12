@@ -59,6 +59,7 @@ workLoop:
     jp workLoop
 
 navigate:
+    call Console.waitForKeyUp
     xor a : ld (play_next), a
     
     call hideCursor
@@ -79,7 +80,7 @@ navigate:
     push hl
     call DialogBox.inputBox
     pop hl
-    ld a, (DialogBox.inputBuffer) : and a : jp z, workLoop
+    ld a, (DialogBox.inputBuffer) : and a : jp z, History.load
     jr .load
 
 showCursor:

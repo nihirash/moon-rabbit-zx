@@ -15,18 +15,18 @@ toolbox db " [D]omain: ", 0
 footer db "  Cursor - movement  [B]ack to prev. page  [H]ome page", 0
 
 inputHost:
+    call Console.waitForKeyUp
 .loop
     ld de, #010B : call TextMode.gotoXY : ld hl, hostName : call TextMode.printZ
     ld a, MIME_INPUT : call TextMode.putC
     ld a, ' ' : call TextMode.putC
 .wait
     call Console.getC
+    ld e, a
     cp Console.BACKSPACE : jr z, .removeChar
     cp CR : jp z, inputNavigate
     cp 32 : jr c, .wait
-    jr .putC
 .putC
-    ld e, a
     xor a : ld hl, hostName, bc, 48 : cpir
     ld (hl), a : dec hl : ld (hl), e 
     jr .loop
@@ -40,7 +40,7 @@ inputNavigate:
     ld hl, hostName, de, domain
     ld a,(hl)
     and a
-    jp History.load
+    jp z, History.load
 .loop
     ld a, (hl) : and a : jr z, .complete
     ld (de), a : inc hl, de

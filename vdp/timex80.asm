@@ -1,5 +1,5 @@
 COLOR=0
-LINE_LIMIT = 80
+    define LINE_LIMIT 80
     module TextMode
 PORT_SELECT = #7c3b
 init:
@@ -99,7 +99,9 @@ putC:
 
     ld a, 7
     call Memory.setPage
+    push iy
     call drawC
+    pop iy
 
     ld hl, coords
     inc (hl)
