@@ -32,6 +32,10 @@ sjasmplus main.asm -DUNO -DTIMEX
 
 ## Usage
 
+Configure your wifi connection using [Network Manager 2.0 or later](https://github.com/nihirash/netman-zx)(binary release can be downloaded from [releases section](https://github.com/nihirash/netman-zx/releases)). 
+
+MB03+ should configure WiFi connection with buildin in BIOS utility. 
+
 Put on SD-card `moonr.bas`, `moon.bin` and `data/` directory to same level.
 
 Make sure that you have preconnected ESP-module to wifi. Execute `moonr.bas` and enjoy.
